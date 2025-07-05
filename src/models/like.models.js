@@ -28,7 +28,7 @@ const likeSchema = new Schema(
       ref: "User",
     },
   },
-  {timeseries: true}
+  {timestamps: true}
 );
 
 export const Like = mongoose.model("Like", likeSchema);
