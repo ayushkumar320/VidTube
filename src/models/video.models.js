@@ -1,5 +1,4 @@
 /*
-  id string pk
   owner ObjectId users
   videoFile string
   thumbnail string
@@ -16,15 +15,40 @@ import mongoose, {Schema} from "mongoose";
 
 const videoSchema = new Schema(
   {
-    owner: {
+    videoFile: {
+      type: String, // cloudinary url
+      required: true,
+    },
+    thumbnail: {
+      type: String, // cloudinary url
+      required: true,
+    },
+    title: {
       type: String,
       required: true,
     },
-    videoFile: {
-      type: URL,
+    desription: {
+      type: String,
       required: true,
-    }
-  }
-)
+    },
+    views: {
+      type: Number,
+      defualt: 0,
+    },
+    duration: {
+      type: Number,
+      required: true,
+    },
+    isPublished: {
+      type: Boolean,
+      default: published,
+    },
+    owner: {
+      type: Schema.Type.ObjectId,
+      ref: "User",
+    },
+  },
+  {timestamps: true}
+);
 
 export const Video = mongoose.model("Video", videoSchema);
